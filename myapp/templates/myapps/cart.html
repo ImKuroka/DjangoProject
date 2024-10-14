@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Корзина товаров</h1>
+<div class="row">
+    {% for product in cart_products %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="{% static product.image.url % }" class="card-img-top" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="card-text">{{ product.price }}</p>
+                    <form action="{% url 'toggle_cart' product.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Убрать из Корзины</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>Ваша корзина пуста.</p>
+    {% endfor %}
+</div>
+{% endblock %}

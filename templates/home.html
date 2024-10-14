@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+NBASHOP.UZ
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="text-center mb-2">
+        <form class="d-flex flex-column" action="{% url 'search' %}" method="GET" style="width: 98.5%;">
+            <div class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search" name="q" style="flex: 1;">
+                <button class="btn btn-outline-success" type="submit" style="flex-shrink: 0;">Поиск</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col mb-5">
+            {% include 'includes/_card.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}

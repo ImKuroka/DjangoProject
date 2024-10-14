@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>{{ category_name|title }}</h1>
+<div class="row">
+    {% for card in cards %}
+    <div class="col-md-4">
+        <div class="card" style="width: 18rem; height: 500px;">
+            <img src="{% static card.image %}" class="card-img-top" alt="{{ card.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ card.title }}</h5>
+                <p class="card-text">{{ card.description }}</p>
+                <div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ card.price }}</li>
+                        <li class="list-group-item">NEW</li>
+                    </ul>
+                </div>
+                <div class="card-links">
+                    <a href="#" class="card-link">Подробнее</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

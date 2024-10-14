@@ -1,0 +1,55 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg bg-dark p-2">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="{% url 'home' %}">
+            <img src="{% static 'images/logonba.png' %}" alt="Logo" width="60" height="34">
+            Hoopers Dream
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'category' 'bballs' %}">Basketballs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'category' 'shoes' %}">Shoes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'category' 'tees' %}">Tees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'category' 'jerseys' %}">Jerseys</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link bg-warning text-white rounded me-3" href="{% url 'favorites' %}">Избранные</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-success text-white rounded me-3" href="{% url 'cart' %}">Корзина</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-primary text-white rounded me-3" href="{% url 'reviews' %}">Отзывы</a>
+                </li>
+                <li class="nav-item">
+                    <span class="nav-link text-white border border-white rounded px-2 me-3">{{ user.username }}</span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-danger text-white rounded" href="{% url 'logout' %}">Выход</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link bg-success text-white rounded" href="{% url 'login' %}">Войти</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bg-warning text-white" href="{% url 'register' %}">Зарегистрироваться</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

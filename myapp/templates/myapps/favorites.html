@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Избранные товары</h1>
+<div class="row">
+    {% for product in favorite_products %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="{% static product.image.url %}" class="card-img-top" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="card-text">{{ product.price }}</p>
+                    <p class="card-text">NEW</p>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>У вас нет избранных товаров.</p>
+    {% endfor %}
+</div>
+{% endblock %}

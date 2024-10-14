@@ -1,0 +1,29 @@
+.site-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.bd-footer {
+    margin-top: auto;
+}
+
+html, body {
+    height: 100%;
+}
+
+.article-img {
+    height: 304px;
+}
+
+
+.card-body {
+    height:170px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+

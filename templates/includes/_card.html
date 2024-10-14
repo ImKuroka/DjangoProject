@@ -1,0 +1,46 @@
+{% load static %}
+
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-3 mb-4">
+            <div class="card" style="height: 90%">
+                <img src="{% static product.image.url %}" class="card-img-top" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ product.price }}</li>
+                    <li class="list-group-item">NEW</li>
+                </ul>
+                <div class="card-body">
+                    <a href="{% url 'write_review' product.id %}" class="btn btn-primary">Написать отзыв</a>
+
+                    <form action="{% url 'toggle_favorite' product.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-warning">
+                            {% if product.id in favorite_products %}
+                            Убрать из избранных
+                            {% else %}
+                            Добавить в избранные
+                            {% endif %}
+                        </button>
+                    </form>
+
+                    <form action="{% url 'toggle_cart' product.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success">
+                            {% if product.id in cart_products %}
+                            Убрать из Корзины
+                            {% else %}
+                            Добавить в Корзину
+                            {% endif %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Результаты поиска: {{ query }}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Результаты поиска для "{{ query }}"</h2>
+    <div class="row">
+        {% for product in results %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static product.image %}" class="card-img-top" alt="{{ product.name }}">
+
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="card-text"><strong>Цена: {{ product.price }}$</strong></p>
+                    <div class="card-links">
+                        <a href="#" class="card-link">Подробнее</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>Ничего не найдено.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
